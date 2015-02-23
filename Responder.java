@@ -27,6 +27,7 @@ public class Responder
         respuestas.add("Can you repeat it, please?");
         respuestas.add("Have you tryed rebooting?");
         respuestas.add("Its not an error, its a feature");
+        respuestas.add("That sounds interesting. Tell me more...");
     }
 
     /**
@@ -35,6 +36,8 @@ public class Responder
      */
     public String generateResponse()
     {
-        return "That sounds interesting. Tell me more...";
+        int num = rnd.nextInt(respuestas.size());
+        String texto = respuestas.get(num);
+        return texto;
     }
 }
