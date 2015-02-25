@@ -44,13 +44,8 @@ public class SupportSystem
             if(input.startsWith("bye")) {
                 finished = true;
             }
-            else if (responder.checkWord(input))
-            {
-                String response = responder.generateResponseWithKey(input);
-                System.out.println(response);
-            }
             else {
-                String response = responder.generateResponse();
+                String response = responder.generateResponse(input);
                 System.out.println(response);
             }
         }
