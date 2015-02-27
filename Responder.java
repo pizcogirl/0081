@@ -70,8 +70,16 @@ public class Responder
         }
         else
         {
-            int num = rnd.nextInt(respuestas.size());
-            texto = respuestas.get(num);
+            if(respuestas.size() > 0)
+            {
+                int num = rnd.nextInt(respuestas.size());
+                texto = respuestas.get(num);
+                respuestas.remove(texto);
+            }
+            else
+            {
+                texto = "I cant understand you";
+            }
         }
         return texto;
     }
