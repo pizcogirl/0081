@@ -13,7 +13,7 @@ public class Responder
     // ArrayList de respuestas para elegir
     private ArrayList<String> respuestas;
     // Diccionario de palabras clave
-    private HashMap<String, String> palabrasClave;
+    private HashMap<HashSet, String> palabrasClave;
 
     /**
      * Construct a Responder
@@ -30,12 +30,30 @@ public class Responder
         respuestas.add("Have you tryed rebooting?");
         respuestas.add("Its not an error, its a feature");
         respuestas.add("That sounds interesting. Tell me more...");
-
+        HashSet<String> listado = new HashSet();
+        HashSet<String> listado2 = new HashSet();
+        HashSet<String> listado3 = new HashSet();
+        HashSet<String> listado4 = new HashSet();
+        HashSet<String> listado5 = new HashSet();
+        HashSet<String> listado6 = new HashSet();
         palabrasClave = new HashMap();
-        palabrasClave.put("hello", "Hello, how can i help you?");
-        palabrasClave.put("help", "Can i help?");
-        palabrasClave.put("error", "It seems like a problem with your OS");
-        palabrasClave.put("shutdown", "Have you updated your graphic card drivers?");
+        listado.add("hello");
+        palabrasClave.put(listado, "Hello, how can i help you?");
+        listado2.add("app");
+        listado2.add("free");
+        palabrasClave.put(listado2, "No sorry");
+        listado3.add("app");
+        palabrasClave.put(listado3, "Yes we have an app");
+        listado4.add("crash");
+        listado4.add("linux");
+        listado4.add("problem");
+        palabrasClave.put(listado4, "Update your OS");
+        listado5.add("linux");
+        listado5.add("problem");
+        palabrasClave.put(listado5, "We dont give support to linux");
+        listado6.add("crash");
+        listado6.add("linux");
+        palabrasClave.put(listado6, "Really?");
     }
 
     /**
@@ -46,31 +64,9 @@ public class Responder
     public String generateResponse(HashSet palabras)
     {
         String texto = "";
-        boolean key = false;
-        String word = "";
-        // Pasamos el mapa a set,y de ahi a un array para mirar cada palabra en la lista
-        // si la encontramos, damos la respuesta para esa palabra
-        Set<String> temp = palabrasClave.keySet();
-        String[] tempo = temp.toArray(new String[0]);
-        int index = 0;
-        while((index < tempo.length) && !(key))
+        if (palabrasClave.containsKey(palabras))
         {
-            word = tempo[index];
-            index++;
-            key = palabras.contains(word);
-        }
-        
-//         // Usando el iterator
-//         Iterator it = palabras.iterator();
-//         while ((it.hasNext()) && !(key))
-//         {
-//             word = it.next();
-//             key = palabrasClave.contains(word);
-//         }
-        
-        if (palabrasClave.containsKey(word))
-        {
-            texto = palabrasClave.get(word);
+            texto = palabrasClave.get(palabras);
         }
         else
         {
