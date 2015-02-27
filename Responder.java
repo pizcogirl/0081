@@ -43,9 +43,31 @@ public class Responder
      * @param word The word to check if its a key word or not
      * @return A string that should be displayed as the response
      */
-    public String generateResponse(String word)
+    public String generateResponse(HashSet palabras)
     {
         String texto = "";
+        boolean key = false;
+        String word = "";
+        // Pasamos el mapa a set,y de ahi a un array para mirar cada palabra en la lista
+        // si la encontramos, damos la respuesta para esa palabra
+        Set<String> temp = palabrasClave.keySet();
+        String[] tempo = temp.toArray(new String[0]);
+        int index = 0;
+        while((index < tempo.length) && !(key))
+        {
+            word = tempo[index];
+            index++;
+            key = palabras.contains(word);
+        }
+        
+//         // Usando el iterator
+//         Iterator it = palabras.iterator();
+//         while ((it.hasNext()) && !(key))
+//         {
+//             word = it.next();
+//             key = palabrasClave.contains(word);
+//         }
+        
         if (palabrasClave.containsKey(word))
         {
             texto = palabrasClave.get(word);
